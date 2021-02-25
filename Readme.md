@@ -21,8 +21,8 @@ curl -s https://raw.githubusercontent.com/c29r3/cosmos-rpc-finder/master/rpc_url
 2. Run docker container  
 ```
 docker run -it --rm \
---volume $(pwd)/config.yml:/rpc_finder/config.yml \
---volume $(pwd)/rpc_urls.txt:/rpc_finder/rpc_urls.txt \
+--volume $(pwd)/config.yml:/rpc-finder/config.yml \
+--volume $(pwd)/rpc_urls.txt:/rpc-finder/rpc_urls.txt \
 --name rpc-finder \
 c29r3/cosmos-rpc-finder
 ```
