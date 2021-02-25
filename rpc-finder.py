@@ -150,8 +150,8 @@ valid_rpc = set(pool.map(get_vuln_validators, rpc_provider_lst))
 valid_rpc.discard('rpc_not_available')
 
 # WRITE CSV HEADERS
-write_to_file('valid_rpc.csv', CSV_HEADER_STR + "\n", 'w')
-write_to_file('vulnerable_validators.csv', CSV_HEADER_STR + "\n", 'w')
+write_to_file('results/valid_rpc.csv', CSV_HEADER_STR + "\n", 'w')
+write_to_file('results/vulnerable_validators.csv', CSV_HEADER_STR + "\n", 'w')
 
 # SEARCHING FOR VULN VALIDATORS
 AFFECTED_STAKE = 0
@@ -170,12 +170,12 @@ for node in valid_rpc:
 if len(VULN_VALIDATORS) > 0:
     print(tabulate(VULN_VALIDATORS, tablefmt="grid", headers=CSV_HEADER_STR.split(",")))
     VULN_VALIDATORS = [",".join(i) for i in VULN_VALIDATORS]
-    write_to_file('vulnerable_validators.csv', VULN_VALIDATORS, 'a')
+    write_to_file('results/vulnerable_validators.csv', VULN_VALIDATORS, 'a')
     print(f'TOTAL VULNERABLE VALIDATORS: {len(VULN_VALIDATORS)} | TOTAL AFFECTED STAKE: {AFFECTED_STAKE}\n'
           f'Check file: vulnerable_validators.csv')
 else:
     print("Vulnerable validators not found")
 
-write_to_file('valid_rpc.csv', valid_rpc, 'a')
+write_to_file('results/valid_rpc.csv', valid_rpc, 'a')
 print("DONE")
 

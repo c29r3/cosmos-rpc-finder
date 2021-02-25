@@ -15,14 +15,16 @@ This tool can be useful for:
 1. Download config file and change the parameters to suit you
 ```
 curl -s https://raw.githubusercontent.com/c29r3/cosmos-rpc-finder/master/config.yml > config.yml; \
-curl -s https://raw.githubusercontent.com/c29r3/cosmos-rpc-finder/master/rpc_urls.txt > rpc_urls.txt
+curl -s https://raw.githubusercontent.com/c29r3/cosmos-rpc-finder/master/rpc_urls.txt > rpc_urls.txt; \
+mkdir results && chmod 777 results
 ```
 
 2. Run docker container  
 ```
 docker run -it --rm \
---volume $(pwd)/config.yml:/rpc-finder/config.yml \
---volume $(pwd)/rpc_urls.txt:/rpc-finder/rpc_urls.txt \
+-v $(pwd)/config.yml:/rpc-finder/config.yml \
+-v $(pwd)/rpc_urls.txt:/rpc-finder/rpc_urls.txt \
+-v $(pwd)/results:/rpc-finder/results \
 --name rpc-finder \
 c29r3/cosmos-rpc-finder
 ```
