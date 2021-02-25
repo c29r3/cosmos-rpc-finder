@@ -7,19 +7,20 @@ RUN apt-get update \
     && ln -s /bin/bash /bin/sh \
     && groupadd -r user \
     && useradd --create-home --no-log-init -r -g user user \
-    && mkdir /rpc_finder \
-    && chown user:user /rpc_finder \
+    && mkdir /rpc-finder \
+    && chown user:user /rpc-finder \
     && apt-get clean \
     && apt-get autoclean
 
-WORKDIR /rpc_finder
+WORKDIR /rpc-finder
 USER user
 
 COPY . .
 
-RUN rm /rpc_finder/config.ini \
+RUN rm /rpc-finder/config.yml \
     && python3 -m venv venv \
     && source ./venv/bin/activate \
+    && python3 -m pip install --upgrade pip \
     && pip3 install -r requirements.txt --no-cache-dir
 
-ENTRYPOINT ["/rpc_finder/venv/bin/python3", "rpc-finder.py"]
+ENTRYPOINT ["/rpc-finder/venv/bin/python3", "rpc-finder.py"]

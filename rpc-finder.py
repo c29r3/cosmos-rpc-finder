@@ -1,7 +1,7 @@
 import requests
 from requests import RequestException, Timeout
 from multiprocessing.dummy import Pool as ThreadPool
-import configparser
+import yaml
 import ipaddress
 import re
 import json
@@ -106,13 +106,13 @@ def get_vuln_validators(validator_url_: str):
         return 'rpc_not_available'
 
 
+c = None
 try:
-    c = configparser.ConfigParser()
-    c.read("config.ini")
-    c = c["DEFAULT"]
+    c = yaml.load(open('config.yml', encoding='utf8'), Loader=yaml.SafeLoader)
 except:
-    print("Can't read config.ini")
+    print("Can't read config file")
     exit(1)
+print("Version: 0.1")
 
 CSV_HEADER_STR    = 'moniker,validator_url_,network,peer_id,block_height,syncing?,voting_power'
 verbose_mode      = str(c["verbose_mode"])
