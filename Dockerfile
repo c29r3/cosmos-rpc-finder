@@ -1,7 +1,7 @@
 FROM python:3.7-slim
 
 RUN apt-get update \
-    && apt-get install -y wget git \
+    && apt-get install -y wget \
     && rm -rf /var/lib/apt/lists/* \
     && rm /bin/sh \
     && ln -s /bin/bash /bin/sh \
@@ -17,7 +17,8 @@ USER user
 
 COPY . .
 
-RUN rm /rpc-finder/config.yml \
+RUN ls . \
+    && rm config.yml \
     && python3 -m venv venv \
     && source ./venv/bin/activate \
     && python3 -m pip install --upgrade pip \
