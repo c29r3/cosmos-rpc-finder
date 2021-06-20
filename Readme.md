@@ -1,6 +1,5 @@
 # cosmos-rpc-finder
 [Tool for Cosmos & Tendermint based projects](https://tendermint.com/)  
-Our site: http://staketab.com/
 
 ## Description
 This tool can be useful for:  
