@@ -14,8 +14,7 @@ This tool can be useful for:
 1. Download config file and change the parameters to suit you
 ```
 curl -s https://raw.githubusercontent.com/c29r3/cosmos-rpc-finder/master/config.yml > config.yml; \
-curl -s https://raw.githubusercontent.com/c29r3/cosmos-rpc-finder/master/rpc_urls.txt > rpc_urls.txt; \
-mkdir results && chmod 777 results
+curl -s https://raw.githubusercontent.com/c29r3/cosmos-rpc-finder/master/rpc_urls.txt > rpc_urls.txt
 ```
 
 2. Fill in the configuration file `config.yml` and `rpc_urls.txt`  
@@ -48,6 +47,7 @@ docker run -it --rm \
 -v $(pwd)/config.yml:/rpc-finder/config.yml \
 -v $(pwd)/rpc_urls.txt:/rpc-finder/rpc_urls.txt \
 -v $(pwd)/results:/rpc-finder/results \
+--user $(id -u):$(id -g) \
 --name rpc-finder \
 c29r3/cosmos-rpc-finder
 ```
